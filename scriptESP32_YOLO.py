@@ -1,7 +1,10 @@
+print("Loading Library...")
 import cv2
 import numpy as np
 from ultralytics import YOLO
 from ubidots import ApiClient
+
+print("Script dimulai...")
 
 def calculate_angle(a, b, c):
     a, b, c = np.array(a), np.array(b), np.array(c)
@@ -18,8 +21,16 @@ def main():
 
     # Inisialisasi YOLOv8 dan kamera
     model = YOLO("yolov8n-pose.pt")
-    esp32_link = "http://10.16.120.169:81/stream"  
+    esp32_link = "http://10.16.120.169:81/stream"
+
+    print("Menghubungkan ke kamera...")
     cap = cv2.VideoCapture(0)  # Ganti dengan URL ESP32 stream jika perlu
+
+    if not cap.isOpened():
+        print("Error: Kamera tidak bisa diakses!")
+        exit()
+    else:
+        print("Kamera berhasil dibuka.")
 
     pushup_count = 0
     is_down = False
