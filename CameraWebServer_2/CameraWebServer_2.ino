@@ -9,8 +9,8 @@
 // ===========================
 // Enter your WiFi credentials
 // ===========================
-const char *ssid = "AgusGIA3";
-const char *password = "123456Ag";
+const char *ssid = "AIRLANGGA-HOTSPOT";
+const char *password = "@irlangg@";
 
 // Pin kamera model AI Thinker (OV2640)
 #define PWDN_GPIO_NUM     32
@@ -60,7 +60,7 @@ void setup() {
   config.pixel_format = PIXFORMAT_JPEG;
 
   config.frame_size = FRAMESIZE_VGA;
-  config.jpeg_quality = 12;
+  config.jpeg_quality = 8;
   config.fb_count = 1;
 
   esp_err_t err = esp_camera_init(&config);
@@ -72,7 +72,7 @@ void setup() {
   // Setting sensor manual
   sensor_t *s = esp_camera_sensor_get();
   s->set_framesize(s, FRAMESIZE_VGA);
-  s->set_quality(s, 12);
+  s->set_quality(s, 8);
   s->set_brightness(s, 0);
   s->set_contrast(s, 0);
   s->set_saturation(s, 0);
@@ -82,7 +82,7 @@ void setup() {
   s->set_exposure_ctrl(s, 1);
   s->set_gain_ctrl(s, 1);
   s->set_gainceiling(s, (gainceiling_t)2);
-  s->set_aec2(s, 0);
+  s->set_aec2(s, 1);
   s->set_ae_level(s, 0);
   s->set_lenc(s, 1);
   s->set_hmirror(s, 1);
