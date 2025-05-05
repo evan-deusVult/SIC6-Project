@@ -39,13 +39,11 @@ def calculate_angle(a, b, c):
     return np.degrees(np.arccos(np.clip(cosine_angle, -1.0, 1.0)))
 
 def main():
-    # Inisialisasi Ubidots
     UBIDOTS_TOKEN = "BBUS-DHs4IfDYDWUWHfHRTnZNSL9wuXiOR9"
     VARIABLE_ID = "67fa31aaa395d7300baf1cd8"
     api = ApiClient(token=UBIDOTS_TOKEN)
     pushup_var = api.get_variable(VARIABLE_ID)
 
-    # Inisialisasi YOLOv8 dan kamera
     model = YOLO("yolov8x-pose.pt")
     esp32_link = "http://192.168.113.70:81/stream"
 
@@ -66,8 +64,6 @@ def main():
             ret, frame = cap.read()
             if not ret:
                 break
-
-            #rame_resized = cv2.resize(frame, (640, 480))
 
             results = model.predict(frame, conf=0.7, verbose=False)
             keypoints = results[0].keypoints
